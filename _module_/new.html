@@ -1,0 +1,35 @@
+<h2>新商品</h2>
+<ul class="item-list">
+<{section name=i loop=$new_item.list max=8}>
+    <li>
+        <div class="item-icon">
+        <{if $new_item.list[i].is_soldout}>
+            <p class="item-soldout">SOLD OUT</p>
+        <{/if}>
+        </div>
+
+        <div class="item-list-image">
+            <a href="<{$new_item.list[i].url}>"><img src="<{$new_item.list[i].image_L}>" alt=""></a>
+        </div>
+        <{if $new_item.list[i].base_category.url}>
+            <p class="item-category"><a href="<{$new_item.list[i].base_category.url}>"><{$new_item.list[i].base_category.name}></a></p>
+        <{/if}>
+        <p class="item-name"><a href="<{$new_item.list[i].url}>"><{$new_item.list[i].name}></a></p>
+        <p class="price">￥<{$new_item.list[i].price|number_format}><span>（税込）</span></p>
+        <{if $new_item.list[i].has_review}>
+        <div class="item-list-review">
+            <{$new_item.list[i].review.star_html}>
+            <p class="item-list-review-rate"><{$new_item.list[i].review.average}></p>
+            <p class="item-list-review-count">[<a href="<{$new_item.list[i].review.url}>"><{$new_item.list[i].review.total_count}>件</a>]</p>
+        </div>
+        <{/if}>
+        <div class="item-list-cart">
+            <{if $new_item.list[i].is_soldout}>
+                <div class="item-list-sold item-list-btn">売り切れ</div>
+            <{else}>
+                <a href="<{$new_item.list[i].cart_entry_url}>" class="item-list-btn add-list-cart cart-order-btn">カートに入れる</a>
+            <{/if}>
+        </div>
+    </li>
+<{/section}>
+</ul>

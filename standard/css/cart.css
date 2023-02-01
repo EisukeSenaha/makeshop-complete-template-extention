@@ -1,0 +1,16 @@
+.side {
+  display: none;
+}
+.amazon-button {
+  display: inline-block;
+  width: 320px;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+  .side {
+    display: block;
+  }
+  .amazon-button {
+    width: 100%;
+  }
+}

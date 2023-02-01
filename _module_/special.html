@@ -1,0 +1,43 @@
+<h2>スペシャル商品</h2>
+<ul class="item-list">
+<{section name=i loop=$special_item.list max=8}>
+    <li>
+        <div class="item-icon">
+        <{if $special_item.list[i].is_soldout}>
+            <p class="item-soldout">SOLD OUT</p>
+        <{elseif $special_item.list[i].is_sale}>
+            <p class="item-sale">SALE</p>
+        <{/if}>
+        </div>
+
+        <div class="item-list-image">
+            <a href="<{$special_item.list[i].url}>"><img src="<{$special_item.list[i].image_L}>" alt=""></a>
+        </div>
+        <{if $special_item.list[i].base_category.url}>
+            <p class="item-category"><a href="<{$special_item.list[i].base_category.url}>"><{$special_item.list[i].base_category.name}></a></p>
+        <{/if}>
+        <p class="item-name"><a href="<{$special_item.list[i].url}>"><{$special_item.list[i].name}></a></p>
+        <{if $special_item.list[i].is_sale}>
+            <p class="price original-price">￥<{$special_item.list[i].original_price|number_format}><span>（税込）</span></p>
+            <p class="price item-sale-price">￥<{$special_item.list[i].price|number_format}><span class="tax">（税込）</span>
+            <span class="sale-discount-rate">[<{$special_item.list[i].sale_rate}>%OFF</span>]</p>
+        <{else}>
+            <p class="price">￥<{$special_item.list[i].price|number_format}><span>（税込）</span></p>
+        <{/if}>
+        <{if $special_item.list[i].has_review}>
+        <div class="item-list-review">
+            <{$special_item.list[i].review.star_html}>
+            <p class="item-list-review-rate"><{$special_item.list[i].review.average}></p>
+            <p class="item-list-review-count">[<a href="<{$special_item.list[i].review.url}>"><{$special_item.list[i].review.total_count}>件</a>]</p>
+        </div>
+        <{/if}>
+        <div class="item-list-cart">
+            <{if $special_item.list[i].is_soldout}>
+                <div class="item-list-sold item-list-btn">売り切れ</div>
+            <{else}>
+                <a href="<{$special_item.list[i].cart_entry_url}>" class="item-list-btn add-list-cart cart-order-btn">カートに入れる</a>
+            <{/if}>
+        </div>
+    </li>
+<{/section}>
+</ul>

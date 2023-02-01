@@ -1,0 +1,29 @@
+<header class="header">
+    <nav class="top-nav">
+        <h1 class="header-logo">
+            <a href="<{$url.top}>">
+                <{if $shop.logo_url}>
+                    <img src="<{$shop.logo_url}>" alt="<{$shop.name}>">
+                <{else}>
+                    <{$shop.name}>
+                <{/if}>
+            </a>
+        </h1>
+        <div class="header-menu">
+            <ul class="gnav">
+                <{if $member.is_logged_in}>
+                <li class="account logout"><a href="<{$url.logout}>">ログアウト</a></li>
+                <{else}>
+                <li class="account membership"><a href="<{$url.member_entry}>">新規会員登録</a></li>
+                <li class="account login"><a href="<{$url.login}>">ログイン</a></li>
+                <{/if}>
+            </ul>
+            <ul class="gnav">
+                <li class="gnav-menu header-favorite"><a href="<{$url.favorite}>">お気に入り</a></li>
+                <li class="gnav-menu header-mypage"><a href="<{$url.mypage}>">マイページ</a></li>
+                <li class="gnav-menu header-cart"><a href="<{$url.cart}>">カート</a>
+                <span class="cart-badge cart-count" <{if !$cart.has_item}>style="display:none;"<{/if}>><{$cart.total_quantity}></span></li>
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,7 @@
+<{if $shop.banner.has_item}>
+    <section class="banner-area">
+        <{section name=i loop=$shop.banner.list}>
+            <a href="<{$shop.banner.list[i].url}>" class="loop-shop-banner" target="<{$shop.banner.list[i].target}>"><img src="<{$shop.banner.list[i].image_url}>"></a>
+        <{/section}>
+    </section>
+<{/if}>

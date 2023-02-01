@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><{$page.title}></title>
+<meta name="description" content="<{$page.description}>">
+<link rel="canonical" href="<{$page.canonical_url}>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="<{$page.title}>">
+<meta property="og:description" content="<{$page.description}>">
+<meta property="og:site_name" content="<{$shop.name}>">
+<meta name="twitter:card" content="Summary with Large Image">
+<link rel="shortcut icon" type="image/ico" href="<{$shop.favicon_url}>">
+<link href="<{$page.css}>" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<{$makeshop.head}>
+</head>
+
+<body>
+<{$makeshop.body_top}>
+    <{$module.header}>
+
+    <div class="contents">
+
+        <div class="breadcrumb">
+            <span class="breadcrumb-item"><a href="<{$url.top}>">ホーム</a></span>
+            <span class="breadcrumb-item">会社概要</span>
+        </div>
+
+        <div class="container">
+
+            <{$module.side}>
+
+            <main class="main">
+                <section class="main-section">
+                    <div class="category-title">
+                        <h2 class="guide-title">会社概要<span>company</span></h2>
+                    </div>
+
+                    <div class="comapany-box">
+                        <img src="<{$company.image_url}>" class="upl-img">
+                        <pre><{$company.content}></pre>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <{$module.footer}>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="<{$page.javascript}>"></script>
+<{$makeshop.body_bottom}>
+</body>
+</html>

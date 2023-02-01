@@ -1,0 +1,119 @@
+<aside class="side">
+    <div class="openbtn"><span></span><span></span><span></span></div>
+    <div id="g-nav">
+        <div id="g-nav-list">
+
+        <section class="sp-side-section">
+            <ul class="sp-gnav">
+                <{if $member.is_logged_in}>
+                <li class="account logout"><a href="<{$url.logout}>">ログアウト</a></li>
+                <{else}>
+                <li class="account membership"><a href="<{$url.member_entry}>">新規会員登録</a></li>
+                <li class="account login"><a href="<{$url.login}>">ログイン</a></li>
+                <{/if}>
+            </ul>
+        </section>
+
+        <section class="search">
+            <ul class="search-area">
+                <li>
+                    <label>キーワードで探す</label>
+                    <input type="text" data-id="<{$search_form.keyword_id}>" value="<{$search.keyword}>" class="side-search-keyword search-keyword" placeholder="キーワードを入力">
+                </li>
+                <li>
+                    <label>カテゴリー</label>
+                    <select data-id="<{$search_form.category_id}>" class="search-category">
+                        <{section name=i loop=$search_form.category_list}>
+                            <option value="<{$search_form.category_list[i].code}>" <{if $search.category.code == $search_form.category_list[i].code}>selected<{/if}>><{$search_form.category_list[i].name}></option>
+                        <{/section}>
+                    </select>
+                </li>
+                <li>
+                    <label>価格帯で絞り込む</label>
+                    <input type="text" data-id="<{$search_form.price_low_id}>" value="<{$search.price_low}>" class="search-price">〜<input type="text" data-id="<{$search_form.price_high_id}>" value="<{$search.price_high}>" class="search-price">円
+                </li>
+                <li>
+                    <label>独自商品コードで探す</label>
+                    <input type="text" data-id="<{$search_form.original_code_id}>" class="side-search-original-code original-code" value="<{$search.original_code}>" placeholder="独自商品コードを入力">
+                </li>
+            </ul>
+            <a href="<{$search_form.search_url}>" class="search-btn search-url">検索する</a>
+        </section>
+
+        <section class="side-section">
+            <p class="category-list-title">カテゴリーで探す</p>
+            <ul class="side-category-list">
+                <{section name=i loop=$category_menu.list}>
+                <{if $category_menu.list[i].child_category.has_item}>
+                    <li class="side-category-item"><p class="accordion"><{$category_menu.list[i].name}></p>
+                        <ul class="side-category-child-item close">
+                        <!--カテゴリー一覧へのリンクを出しておきたい場合は下記<li>タグをアクティブ
+                        <li><a href="<{$category_menu.list[i].url}>" class="child-item">すべての<{$category_menu.list[i].name}></a></li>
+                        -->
+                        <{section name=j loop=$category_menu.list[i].child_category.list}>
+                            <li><a href="<{$category_menu.list[i].child_category.list[j].url}>" class="child-item"><{$category_menu.list[i].child_category.list[j].name}></a></li>
+                        <{/section}>
+                        </ul>
+                    </li>
+                <{else}>
+                    <li class="side-category-item"><a href="<{$category_menu.list[i].url}>"><{$category_menu.list[i].name}></a></li>
+                <{/if}>
+                <{/section}>
+                <{if $bulk_menu.has_item}>
+                    <{section name=i loop=$bulk_menu.list}>
+                        <div class="side-category-item">
+                            <a href="<{$bulk_menu.list[i].url}>"><{$bulk_menu.list[i].name}></a>
+                        </div>
+                    <{/section}>
+                <{/if}>
+            </ul>
+        </section>
+
+        <section class="side-section">
+            <ul class="side-contact">
+                <li><a href="<{$url.guide}>">ご利用ガイド</a></li>
+                <li><a href="<{$url.support}>">お問い合わせ</a></li>
+                <{if $shop.is_mail_magazine_enabled}>
+                <li><a href="<{$url.mail_magazine}>">メールマガジン登録</a></li>
+                <{/if}>
+            </ul>
+        </section>
+
+        <section class="side-section calendar-wrap">
+        <dl class="calendar-title this-month">
+            <dt><{$calendar1.year}>年</dt>
+            <dd><{$calendar1.month}>月</dd>
+        </dl>
+        <{$calendar1.html}>
+            <{section name=i loop=$calendar1.date_list}>
+                <div>
+                    <span style="color:<{$calendar1.date_list[i].color}>; display: inline-block; padding: 0 6px 3px;">■</span><{$calendar1.date_list[i].description}>
+                </div>
+            <{/section}>
+            <{section name=i loop=$calendar1.date_list}>
+                <{section name=j loop=$calendar1.date_list[i].day_list}>
+                    <input type="hidden" class="day-list" data-month="1" data-day="<{$calendar1.date_list[i].day_list[j]}>" data-color="<{$calendar1.date_list[i].color}>">
+                <{/section}>
+            <{/section}>
+        </section>
+
+        <section class="side-section calendar-wrap">
+        <dl class="calendar-title next-month">
+            <dt><{$calendar2.year}>年</dt>
+            <dd><{$calendar2.month}>月</dd>
+        </dl>
+        <{$calendar2.html}>
+            <{section name=i loop=$calendar2.date_list}>
+                <div>
+                    <span style="color:<{$calendar2.date_list[i].color}>; display: inline-block; padding: 0 6px 3px;">■</span><{$calendar2.date_list[i].description}>
+                </div>
+            <{/section}>
+            <{section name=i loop=$calendar2.date_list}>
+                <{section name=j loop=$calendar2.date_list[i].day_list}>
+                    <input type="hidden" class="day-list" data-month="2" data-day="<{$calendar2.date_list[i].day_list[j]}>" data-color="<{$calendar2.date_list[i].color}>">
+                <{/section}>
+            <{/section}>
+        </section>
+        </div>
+    </div>
+</aside>

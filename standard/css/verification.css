@@ -1,0 +1,49 @@
+.verify {
+  margin: 64px auto;
+  width: 100%;
+  text-align: center;
+}
+.verify h2 {
+  margin: 0 0 32px 0;
+  font-size: 32px;
+}
+.verify p {
+  margin: 0 0 38px 0;
+}
+.verify-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+.verify-btn {
+  font-size: 18px;
+  display: inline-block;
+  border-radius: 5px;
+  margin: 12px 10px 0;
+  padding: 14px 0;
+  background: #ccc;
+  color: #fff;
+  width: 160px;
+}
+.member-wrap {
+  margin: 0 40px;
+}
+.yes {
+  background: #F23E0C;
+}
+.member {
+  background: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .verify-btn-wrap {
+    display: block;
+  }
+  .verify p {
+    margin-bottom: 8px;
+  }
+  .member-wrap {
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,49 @@
+<!--商品グループ-->
+<{if $item.group.has_item}>
+    <div class="group-item-section">
+    <h2 class="group-item-title">関連商品</h2>
+    <ul class="group-item-list">
+        <{section name=i loop=$item.group.list max=8}>
+        <li>
+            <div class="item-icon">
+            <{if $item.group.list[i].is_soldout}>
+                <p class="item-soldout">SOLD OUT</p>
+            <{elseif $item.group.list[i].is_sale}>
+                <p class="item-sale">SALE</p>
+            <{/if}>
+            </div>
+
+            <div class="item-list-image">
+                <a href="<{$item.group.list[i].url}>"><img src="<{$item.group.list[i].image_L}>" alt=""></a>
+            </div>
+            <{if $item.group.list[i].base_category.url}>
+                <p class="item-category"><a href="<{$item.group.list[i].base_category.url}>"><{$item.group.list[i].base_category.name}></a></p>
+            <{/if}>
+                <p class="item-name"><a href="<{$item.group.list[i].url}>"><{$item.group.list[i].name}></a></p>
+            <{if $item.group.list[i].is_sale}>
+                <p class="price original-price">￥<{$item.group.list[i].original_price|number_format}><span>（税込）</span></p>
+                <p class="price item-sale-price">￥<{$item.group.list[i].price|number_format}><span class="tax">（税込）</span>
+                <span class="sale-discount-rate">[<{$item.group.list[i].sale_rate}>%OFF</span>]</p>
+            <{else}>
+                <p class="price">￥<{$item.group.list[i].price|number_format}><span>（税込）</span></p>
+            <{/if}>
+
+            <{if $item.group.list[i].icon.has_item}>
+            <div class="item-group-icon">
+                <{section name=j loop=$item.group.list[i].icon.list}>
+                <img src="<{$item.group.list[i].icon.list[j].image_url}>" alt="">
+                <{/section}>
+            </div>
+            <{/if}>
+            <div class="item-list-cart">
+                <{if $item.group.list[i].is_soldout}>
+                    <div class="item-list-sold item-list-btn">売り切れ</div>
+                <{else}>
+                    <a href="<{$item.group.list[i].cart_entry_url}>" class="item-list-btn add-list-cart cart-order-btn">カートに入れる</a>
+                <{/if}>
+            </div>
+        </li>
+        <{/section}>
+    </ul>
+    </div>
+<{/if}>
