@@ -1,0 +1,1 @@
+# makeshop-complete-template-extention
